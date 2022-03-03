@@ -8,3 +8,4 @@ Telegram бот для мониторинга курса двух самых з�
 <br />
   <code>sudo docker build -t t-bot-ggtxru .</code><br />
   <code>docker run -e TELEGRAM_API_TOKEN="" t-bot-ggtxru</code>
+

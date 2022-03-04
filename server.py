@@ -10,8 +10,7 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 
 logging.basicConfig(level=logging.INFO)
-#API_TOKEN = os.environ["TELEGRAM_API_TOKEN"]
-API_TOKEN = "5176489970:AAGc_b8KRthxbU460_73EdkUBcX-7AZZxI4"
+API_TOKEN = os.environ["TELEGRAM_API_TOKEN"]
 bot = Bot(token=API_TOKEN, parse_mode=None)
 dp = Dispatcher(bot)
 

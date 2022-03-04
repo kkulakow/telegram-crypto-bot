@@ -27,7 +27,7 @@ async def get_url(crypto_name):
     return urls
 
 
-async def get_soup(URL, HEADERS):
+async def get_soup(URL, HEADERS):   
     """Получаем html-страничку, получаем объект супа"""
     html = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(html.text, 'html.parser')
@@ -70,6 +70,8 @@ async def send_welcome(message: types.Message):
 @dp.message_handler()
 async def get_btc_eth_button_or_text_input_to_bot(message: types.Message):
     """Отправляет котировку криптоваюты"""
+    user_id = message.from_user.id
+    await bot.send_chat_action(user_id, "typing")
     try:
         await get_url(message["text"].split(" ")[2][0:-1])
         crypto_name = message["text"].split(" ")[2][0:-1]

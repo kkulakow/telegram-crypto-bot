@@ -24,8 +24,9 @@ async def get_headers():
 async def get_url(crypto):
     """Функция, содержащая внутри себя словарь, со всеми нужными URL для Гугл запроса по монете"""
     urls = {
-        "btc" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBtBdKqkQi92if7GFoNVLmsBj0YTIw%3A1646135033894&ei=-QYeYuCbNvaGwPAP5_m82AM&oq=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCAAQgAQyBQgAEIAEMgsIABCABBCxAxCDATIFCAAQgAQyCwgAEIAEELEDEIMBMgsIABCABBCxAxCDATILCAAQgAQQsQMQgwEyBQgAEIAEMgUIABCABDIICAAQgAQQyQM6BwgAEEcQsAM6CggAEEcQsAMQyQM6BwgAELADEEM6EgguEMcBEKMCEMgDELADEEMYADoSCC4QxwEQ0QMQyAMQsAMQQxgASgUIPBIBMUoECEEYAEoECEYYAFD8B1j8B2CrF2gBcAF4AIABWYgBWZIBATGYAQCgAQHIAQ3AAQHaAQQIABgI&sclient=gws-wiz",
-        "eth" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBs4fiPng3SDNz21RPbRiLlkONm25g%3A1646135709828&ei=nQkeYveRMujrrgTloLSoDA&ved=0ahUKEwi31PGx7aT2AhXotYsKHWUQDcUQ4dUDCA0&uact=5&oq=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQBxAeOgcIIxCwAxAnOgcIABBHELADOgoIABBHELADEMkDOgcIABCwAxBDOhIILhDHARCjAhDIAxCwAxBDGAA6EgguEMcBENEDEMgDELADEEMYADoFCAAQxAI6CAgAEAgQBxAeSgUIPBIBMUoECEEYAEoECEYYAVCPBFiqF2DDHGgBcAF4AIABaYgBrwWSAQMzLjSYAQCgAQHIARHAAQHaAQYIABABGAg&sclient=gws-wiz"
+        "Биткоин" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBtBdKqkQi92if7GFoNVLmsBj0YTIw%3A1646135033894&ei=-QYeYuCbNvaGwPAP5_m82AM&oq=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCAAQgAQyBQgAEIAEMgsIABCABBCxAxCDATIFCAAQgAQyCwgAEIAEELEDEIMBMgsIABCABBCxAxCDATILCAAQgAQQsQMQgwEyBQgAEIAEMgUIABCABDIICAAQgAQQyQM6BwgAEEcQsAM6CggAEEcQsAMQyQM6BwgAELADEEM6EgguEMcBEKMCEMgDELADEEMYADoSCC4QxwEQ0QMQyAMQsAMQQxgASgUIPBIBMUoECEEYAEoECEYYAFD8B1j8B2CrF2gBcAF4AIABWYgBWZIBATGYAQCgAQHIAQ3AAQHaAQQIABgI&sclient=gws-wiz",
+        "Эфириум" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBs4fiPng3SDNz21RPbRiLlkONm25g%3A1646135709828&ei=nQkeYveRMujrrgTloLSoDA&ved=0ahUKEwi31PGx7aT2AhXotYsKHWUQDcUQ4dUDCA0&uact=5&oq=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQBxAeOgcIIxCwAxAnOgcIABBHELADOgoIABBHELADEMkDOgcIABCwAxBDOhIILhDHARCjAhDIAxCwAxBDGAA6EgguEMcBENEDEMgDELADEEMYADoFCAAQxAI6CAgAEAgQBxAeSgUIPBIBMUoECEEYAEoECEYYAVCPBFiqF2DDHGgBcAF4AIABaYgBrwWSAQMzLjSYAQCgAQHIARHAAQHaAQYIABABGAg&sclient=gws-wiz",
+        "Дэш" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D0%B4%D1%8D%D1%88%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBtmMSf2QvDD_jPgIHFOdCWGPyUm9w%3A1646385772789&ei=bNohYt_RL7qSwPAPjO6k6AY&ved=0ahUKEwjft5n5kKz2AhU6CRAIHQw3CW0Q4dUDCA0&uact=5&oq=%D0%BA%D1%83%D1%80%D1%81+%D0%B4%D1%8D%D1%88%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&gs_lcp=Cgdnd3Mtd2l6EAM6BwgjEOoCECc6BAgjECc6BAgAEEM6BQgAEIAEOggIABCxAxCDAToOCC4QsQMQgwEQxwEQowI6CwgAEIAEELEDEIMBOgoIABCxAxCDARBDOgcIABCxAxBDOgkIIxAnEEYQggI6DggAEIAEELEDEIMBEMkDOgcIABCABBAKOgQIABAKOgkIABANEEYQggI6BAgAEA06CggAEIAEEEYQggI6BggAEBYQHjoFCCEQoAFKBQg8EgEzSgQIQRgASgQIRhgAUKsFWIxEYKlFaAVwAXgAgAFliAH2DpIBBDIxLjGYAQCgAQGwAQrAAQE&sclient=gws-wiz"
     }
     return urls[crypto]
 
@@ -40,9 +41,8 @@ async def get_soup(URL, HEADERS):
 async def get_price(soup):
     """Парсим полученный объект, находим нужную строчку цены"""
     crypto_price = soup.findAll('span', class_='pclqee')
-    for price in crypto_price:
-            crypto_price = price
-    return crypto_price
+    [crypto_price for price in crypto_price]
+    return crypto_price[0]
 
 
 async def go_crypto(name_of_crypto: str):
@@ -62,29 +62,25 @@ async def go_crypto(name_of_crypto: str):
 async def send_welcome(message: types.Message):
     """Отправляет приветственное сообщение и помощь по боту"""
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["Вывести курс Биткоина", "Вывести курс Эфириума"]
+    buttons = ["Вывести курс Биткоина", "Вывести курс Эфириума", "Вывести курс Дэша"]
     keyboard.add(*buttons)
     await message.answer(
-        "Привет!\n"
-        "Могу показать тебе курс Биткоина и Эфириума на сегодняшний день\n",
+        "Привет, я Konvik ❤️\n\n"
+        "Могу показать тебе курс интересующих тебя криптовалют на сегодняшний день 🌍\n\n\n"
+        "Просто выбери нужную кнопку, с нужной тебе криптовалютой 💬 ⬇",
         reply_markup=keyboard)
     
 
 @dp.message_handler()
 async def get_btc_eth_button_or_text_input_to_bot(message: types.Message):
-    """Отправляет стоимость Эфира/Биткоина"""
-    if message.text == "Вывести курс Биткоина":
-        price = await go_crypto("btc")
-        await message.answer(f"Bitcoin: {price.text}USD")
-        
-    if message.text == "Вывести курс Эфириума":
-        price = await go_crypto("eth")
-        await message.answer(f"Ethereum: {price.text}USD")
+    """Отправляет котировку криптоваюты"""
+    try:
+        await get_url(message["text"].split(" ")[2][0:-1])
+        crypto_name = message["text"].split(" ")[2][0:-1]
+        price = await go_crypto(message["text"].split(" ")[2][0:-1])
+        await message.answer(f"{crypto_name}: {price.text}USD")
+    except: await message.answer("Я вас не понимаю 😓")
     
-    if message.text != "Вывести курс Биткоина" and message.text != "Вывести курс Эфириума":
-        """Обработчик некорректных сообщений пользователя"""
-        await message.answer("Я вас не понимаю .. :(")
-
-
+    
 if __name__ == '__main__':
         executor.start_polling(dp)

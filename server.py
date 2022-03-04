@@ -10,7 +10,8 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 
 logging.basicConfig(level=logging.INFO)
-API_TOKEN = os.environ["TELEGRAM_API_TOKEN"]
+#API_TOKEN = os.environ["TELEGRAM_API_TOKEN"]
+API_TOKEN = "5176489970:AAGc_b8KRthxbU460_73EdkUBcX-7AZZxI4"
 bot = Bot(token=API_TOKEN, parse_mode=None)
 dp = Dispatcher(bot)
 
@@ -21,14 +22,10 @@ async def get_headers():
     return headers 
 
 
-async def get_url(crypto):
-    """Функция, содержащая внутри себя словарь, со всеми нужными URL для Гугл запроса по монете"""
-    urls = {
-        "Биткоин" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBtBdKqkQi92if7GFoNVLmsBj0YTIw%3A1646135033894&ei=-QYeYuCbNvaGwPAP5_m82AM&oq=%D0%BA%D1%83%D1%80%D1%81+%D0%B1%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD%D0%B0+&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCAAQgAQyBQgAEIAEMgsIABCABBCxAxCDATIFCAAQgAQyCwgAEIAEELEDEIMBMgsIABCABBCxAxCDATILCAAQgAQQsQMQgwEyBQgAEIAEMgUIABCABDIICAAQgAQQyQM6BwgAEEcQsAM6CggAEEcQsAMQyQM6BwgAELADEEM6EgguEMcBEKMCEMgDELADEEMYADoSCC4QxwEQ0QMQyAMQsAMQQxgASgUIPBIBMUoECEEYAEoECEYYAFD8B1j8B2CrF2gBcAF4AIABWYgBWZIBATGYAQCgAQHIAQ3AAQHaAQQIABgI&sclient=gws-wiz",
-        "Эфириум" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBs4fiPng3SDNz21RPbRiLlkONm25g%3A1646135709828&ei=nQkeYveRMujrrgTloLSoDA&ved=0ahUKEwi31PGx7aT2AhXotYsKHWUQDcUQ4dUDCA0&uact=5&oq=%D0%BA%D1%83%D1%80%D1%81+%D1%8D%D1%84%D0%B8%D1%80%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQBxAeOgcIIxCwAxAnOgcIABBHELADOgoIABBHELADEMkDOgcIABCwAxBDOhIILhDHARCjAhDIAxCwAxBDGAA6EgguEMcBENEDEMgDELADEEMYADoFCAAQxAI6CAgAEAgQBxAeSgUIPBIBMUoECEEYAEoECEYYAVCPBFiqF2DDHGgBcAF4AIABaYgBrwWSAQMzLjSYAQCgAQHIARHAAQHaAQYIABABGAg&sclient=gws-wiz",
-        "Дэш" : "https://www.google.ru/search?q=%D0%BA%D1%83%D1%80%D1%81+%D0%B4%D1%8D%D1%88%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&newwindow=1&sxsrf=APq-WBtmMSf2QvDD_jPgIHFOdCWGPyUm9w%3A1646385772789&ei=bNohYt_RL7qSwPAPjO6k6AY&ved=0ahUKEwjft5n5kKz2AhU6CRAIHQw3CW0Q4dUDCA0&uact=5&oq=%D0%BA%D1%83%D1%80%D1%81+%D0%B4%D1%8D%D1%88%D0%B0+%D0%B2+%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80%D0%B0%D1%85&gs_lcp=Cgdnd3Mtd2l6EAM6BwgjEOoCECc6BAgjECc6BAgAEEM6BQgAEIAEOggIABCxAxCDAToOCC4QsQMQgwEQxwEQowI6CwgAEIAEELEDEIMBOgoIABCxAxCDARBDOgcIABCxAxBDOgkIIxAnEEYQggI6DggAEIAEELEDEIMBEMkDOgcIABCABBAKOgQIABAKOgkIABANEEYQggI6BAgAEA06CggAEIAEEEYQggI6BggAEBYQHjoFCCEQoAFKBQg8EgEzSgQIQRgASgQIRhgAUKsFWIxEYKlFaAVwAXgAgAFliAH2DpIBBDIxLjGYAQCgAQGwAQrAAQE&sclient=gws-wiz"
-    }
-    return urls[crypto]
+async def get_url(crypto_name):
+    """Функция автоматического определения нужного URL по каждой отдельно взятой монете"""
+    urls = f"https://www.google.ru/search?q=курс+{crypto_name}а+в+долларах"
+    return urls
 
 
 async def get_soup(URL, HEADERS):
@@ -77,7 +74,7 @@ async def get_btc_eth_button_or_text_input_to_bot(message: types.Message):
     try:
         await get_url(message["text"].split(" ")[2][0:-1])
         crypto_name = message["text"].split(" ")[2][0:-1]
-        price = await go_crypto(message["text"].split(" ")[2][0:-1])
+        price = await go_crypto(crypto_name)
         await message.answer(f"{crypto_name}: {price.text}USD")
     except: await message.answer("Я вас не понимаю 😓")
     
